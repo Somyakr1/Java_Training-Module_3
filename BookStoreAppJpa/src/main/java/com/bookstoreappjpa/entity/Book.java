@@ -19,6 +19,9 @@ public class Book {
     private String isbn;
     private String category;
     
+    public Book() {
+    	
+    }
     
 	public Book(String title, String author, Double price, String isbn, String category) {
 		super();

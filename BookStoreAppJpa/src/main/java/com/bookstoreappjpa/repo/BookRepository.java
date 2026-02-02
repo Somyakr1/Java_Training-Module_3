@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.bookstoreappjpa.entity.Book;
 
-
+@Repository
 public interface BookRepository extends JpaRepository<Book, Integer>{
 	List<Book> findByAuthor(String author);
 
@@ -25,9 +26,7 @@ public interface BookRepository extends JpaRepository<Book, Integer>{
     @Query("SELECT b FROM Book b ORDER BY b.price DESC")
     List<Book> sortByPriceDesc();
 
-    @Query(
-      value = "SELECT * FROM books WHERE price BETWEEN ?1 AND ?2",
-      nativeQuery = true
-    )
+    @Query(value = "SELECT * FROM books WHERE price BETWEEN ?1 AND ?2",
+      nativeQuery = true)
     List<Book> findByPriceRange(double min, double max);
 }
